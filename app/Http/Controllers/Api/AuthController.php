@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function register(Request $request){
+    public function register(Request $request)
+    {
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
@@ -24,8 +25,9 @@ class AuthController extends Controller
         ]);
     }
 
-    public function login(Request $request){
-        if(!Auth::attempt($request->only(['email', 'password'])))
+    public function login(Request $request)
+    {
+        if (!Auth::attempt($request->only(['email', 'password'])))
             return response()->json(['error' => 'Invalid']);
 
         $token = $request->user()->createToken('auth')->plainTextToken;
@@ -35,6 +37,17 @@ class AuthController extends Controller
             'message' => 'login berhasil',
             'token' => $token,
             'data' => $request->user()
+        ]);
+    }
+
+    public function logout(Request $request)
+    {
+        // Hapus token yang sedang dipakai
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Logout berhasil'
         ]);
     }
 }

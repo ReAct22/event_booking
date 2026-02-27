@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('slot_id')->constrained('time_slots')->cascadeOnDelete();
             $table->integer('quantity');
-            $table->enum('status', ['active', 'deactive'])->default('active');
+            $table->enum('status', ['active', 'cancelled'])->default('active');
             $table->timestamps();
         });
     }
