@@ -163,8 +163,8 @@ http://127.0.0.1:8000/api
 # 4. Test Accounts
 
 Regular User  
-Email: user1@test.com  
-Password: password  
+Email: admin@example.com  
+Password: password123  
 
 Busy User (All Scenario Coverage)  
 Email: busy@test.com  
